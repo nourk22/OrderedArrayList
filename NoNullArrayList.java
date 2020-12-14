@@ -13,21 +13,26 @@ public class NoNullArrayList<T> extends ArrayList<T>{
   public void add(int index, T element){
     if (element==null){
       throw new IllegalArgumentException("Element cannot be null");
+    }else{
+      super.add(index, element);
     }
-    super.add(index, element);
   }
 
   public boolean add (T e){
     if (e==null){
       throw new IllegalArgumentException("Element cannot be null");
+    }else{
+      super.add(e);
+      return true;
     }
-    super.add(e);
-    return true;
   }
 
   public T set(int index, T element){
-    super.set(index, element);
-    return element;
+    if (element==null){
+      throw new IllegalArgumentException("Element cannot be null");
+    }else{
+      return super.set(index, element);
+    }
   }
 
   public static void main(String[] args){
