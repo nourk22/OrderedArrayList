@@ -10,8 +10,12 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
   }
 
   private int helper(T element){
+    if (element==null){
+      throw new IllegalArgumentException("Element cannot be null");
+    }
+
     for (int i = 0; i<size(); i++){
-      if (element.compareTo(get(i))>=0){
+      if (element.compareTo(get(i))<=0){
         return i;
       }
     }
@@ -28,9 +32,13 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
   }
 
   public T set(int index, T element){
-    super.remove(index);
-    add(helper(element), element);
-    return element;
+    if (element==null){
+      throw new IllegalArgumentException("Element cannot be null");
+    }
+    T original = get(index);
+    remove(index);
+    add(element);
+    return original;
   }
 
   public static void main(String[] args){
